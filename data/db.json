@@ -1,325 +1,325 @@
 {
-    "hero": {
-        "name": "Khadeeja Haji",
-        "title": "Python Tutor & Developer",
-        "tagline": "Passionate about building scalable web applications and teaching the next generation of coders.",
-        "primaryBtn": {
-            "text": "Book a Session",
-            "link": "#contact"
-        },
-        "secondaryBtn": {
-            "text": "Experience",
-            "link": "#experience"
-        },
-        "outlineBtn": {
-            "text": "Watch Course",
-            "link": "#course"
-        }
+  "hero": {
+    "name": "Khadeeja Haji",
+    "title": "Python Tutor & Developer",
+    "tagline": "Passionate about building scalable web applications and teaching the next generation of coders.",
+    "primaryBtn": {
+      "text": "Book a Session",
+      "link": "#contact"
     },
-    "stats": [
-        {
-            "label": "Students Taught",
-            "target": 50
-        },
-        {
-            "label": "Video Episodes",
-            "target": 10
-        },
-        {
-            "label": "YouTube Views",
-            "target": 1000
-        },
-        {
-            "label": "% Beginner Friendly",
-            "target": 100
-        }
-    ],
-    "about": {
-        "badge": "York University, Canada",
-        "heading": "Currently Teaching Python Fundamentals",
-        "text1": "I am a Python tutor currently studying at York University, Canada. I specialize in teaching beginners the foundations of programming in a clear, step-by-step manner.",
-        "text2": "My goal is to make coding accessible and practical for every student. Whether you are a high school student or a university beginner, I structure my lessons to build confidence and real-world skills.",
-        "image": "https://picsum.photos/seed/khadeeja/600/400"
+    "secondaryBtn": {
+      "text": "Experience",
+      "link": "#experience"
     },
-    "approach": [
-        {
-            "icon": "fas fa-list-ol",
-            "title": "Step-by-Step",
-            "desc": "No jumping ahead. We build a solid foundation before moving to complex topics."
-        },
-        {
-            "icon": "fas fa-laptop-code",
-            "title": "Hands-on",
-            "desc": "Learn by doing. Real coding exercises in every session."
-        },
-        {
-            "icon": "fas fa-globe",
-            "title": "Real Examples",
-            "desc": "Applying code to real-world scenarios so you understand the \"Why\"."
-        },
-        {
-            "icon": "fas fa-comments",
-            "title": "Interactive",
-            "desc": "Q&A and problem-solving driven sessions tailored to your pace."
-        }
-    ],
-    "episodes": [
-        {
-            "index": 1,
-            "title": "The Python Series | Trailer",
-            "duration": "1:22",
-            "youtubeUrl": "https://www.youtube.com/watch?v=EkplNj4oNeo"
-        },
-        {
-            "index": 2,
-            "title": "Variables and Data Types",
-            "duration": "2:30",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 3,
-            "title": "Simple Math Operations",
-            "duration": "3:54",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 4,
-            "title": "Conditions",
-            "duration": "4:52",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 5,
-            "title": "Logical Operators and Boolean",
-            "duration": "5:28",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 6,
-            "title": "Loops",
-            "duration": "13:44",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 7,
-            "title": "Functions Part 1",
-            "duration": "3:36",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 8,
-            "title": "Functions Part 2",
-            "duration": "4:30",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 9,
-            "title": "GUI - Getting Started with Tkinter",
-            "duration": "2:37",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        },
-        {
-            "index": 10,
-            "title": "String Operations",
-            "duration": "8:31",
-            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
-        }
-    ],
-    "projects": [
-        {
-            "icon": "fas fa-calculator",
-            "title": "Calculator",
-            "desc": "Handle basic math operations with user input."
-        },
-        {
-            "icon": "fas fa-dice",
-            "title": "Guess the Number",
-            "desc": "Learn logic & loops with a game."
-        },
-        {
-            "icon": "fas fa-tasks",
-            "title": "To-Do List",
-            "desc": "Manage tasks using lists and functions."
-        },
-        {
-            "icon": "fas fa-window-maximize",
-            "title": "GUI Application",
-            "desc": "Create windows and buttons with Tkinter."
-        }
-    ],
-    "experience": [
-        {
-            "date": "Current",
-            "title": "Software Developer",
-            "subtitle": "YU Blueprint",
-            "desc": "Specializing in modern web development using Next.js, React.js, and TypeScript. Building scalable and user-friendly applications."
-        },
-        {
-            "date": "Past",
-            "title": "Coding Instructor",
-            "subtitle": "Kids Coding School",
-            "desc": "Taught Python programming and problem-solving to young students. Developed engaging curriculum and provided online instruction."
-        },
-        {
-            "date": "Past",
-            "title": "Student Success Mentor Lead",
-            "subtitle": "Lassonde School of Engineering",
-            "desc": "Led a team of mentors to support student success. Utilized Microsoft Power Automate, Excel, and Teams to streamline operations."
-        }
-    ],
-    "volunteering": [
-        {
-            "title": "Registration Volunteer",
-            "meta": "Collision Conf | Jun 2024",
-            "desc": "Assisted with attendee registration at one of North America's largest tech conferences."
-        },
-        {
-            "title": "Student Volunteer",
-            "meta": "Parents Voice Association - UJALA Centre",
-            "desc": "Supported special needs children in a social services setting."
-        },
-        {
-            "title": "Education Volunteer",
-            "meta": "Citizens' Education Development Foundation",
-            "desc": "Teaching underprivileged children (Apr 2019 - May 2019)."
-        }
-    ],
-    "certifications": [
-        {
-            "title": "IBM Application Security",
-            "meta": "IBM | Issued Aug 2025",
-            "desc": "DevOps Professionals. Skills: OWASP, Flask, Vault."
-        },
-        {
-            "title": "Learning SQL Programming",
-            "meta": "LinkedIn | Issued Jul 2025",
-            "desc": "Comprehensive SQL skills."
-        },
-        {
-            "title": "Technical Support Fundamentals",
-            "meta": "Google | Issued Jul 2025",
-            "desc": "Troubleshooting and support basics."
-        },
-        {
-            "title": "DevOps Foundations: CI/CD",
-            "meta": "LinkedIn | Issued Jun 2025",
-            "desc": "Continuous Delivery and Integration principles."
-        }
-    ],
-    "skills": [
-        {
-            "category": "Languages",
-            "tags": [
-                "Python",
-                "Java",
-                "C",
-                "JavaScript",
-                "TypeScript",
-                "SQL",
-                "Bash / Shell",
-                "HTML5",
-                "CSS3",
-                "RISC-V"
-            ]
-        },
-        {
-            "category": "Web Frameworks & Libraries",
-            "tags": [
-                "React.js",
-                "Next.js",
-                "Node.js",
-                "Flask",
-                "Vite",
-                "jQuery"
-            ]
-        },
-        {
-            "category": "Tools & DevOps",
-            "tags": [
-                "Git / GitHub",
-                "GitHub Actions",
-                "Linux",
-                "Vim",
-                "VS Code",
-                "Eclipse",
-                "npm"
-            ]
-        },
-        {
-            "category": "Security & Concepts",
-            "tags": [
-                "OWASP ZAP",
-                "Nmap",
-                "Web App Security",
-                "CI/CD",
-                "Data Structures",
-                "OOP",
-                "Project Management"
-            ]
-        }
-    ],
-    "reviews": [
-        {
-            "stars": 5,
-            "text": "She explains Python concepts in a way that actually makes sense. I finally understand loops!",
-            "author": "Ayesha K.",
-            "role": "University Student",
-            "initials": "AK"
-        },
-        {
-            "stars": 5,
-            "text": "Her lessons are structured and easy to follow. Perfect for beginners.",
-            "author": "Daniel R.",
-            "role": "High School Student",
-            "initials": "DR"
-        },
-        {
-            "stars": 5,
-            "text": "The practice examples helped me gain confidence in coding. Highly recommended!",
-            "author": "Hamza M.",
-            "role": "Self-Learner",
-            "initials": "HM"
-        },
-        {
-            "stars": 5,
-            "text": "I went from zero programming knowledge to writing my own scripts in weeks.",
-            "author": "Sara L.",
-            "role": "Career Switcher",
-            "initials": "SL"
-        }
-    ],
-    "faq": [
-        {
-            "q": "Is this suitable for absolute beginners?",
-            "a": "Yes, absolutely! No prior programming knowledge is required. We start from the very basics like installing Python and writing your first line of code."
-        },
-        {
-            "q": "Do you offer one-on-one tutoring?",
-            "a": "Yes, I offer personalized online sessions tailored to your specific learning goals and pace."
-        },
-        {
-            "q": "What age group do you teach?",
-            "a": "I primarily teach high school students and university beginners, but I am open to anyone willing to learn!"
-        },
-        {
-            "q": "What tools do I need?",
-            "a": "You need a computer (PC/Mac) and access to the internet. We will set up VS Code and Python together in the first lesson."
-        }
-    ],
-    "contact": {
-        "email": "khadeeja@example.com",
-        "formspreeId": "YOUR_FORM_ID_HERE",
-        "linkedin": "https://www.linkedin.com/in/khadeeja-h/",
-        "github": "https://github.com/theRedKh",
-        "portfolio": "https://theredkh.github.io/my-portfolio/"
+    "outlineBtn": {
+      "text": "Watch Course",
+      "link": "#course"
+    }
+  },
+  "stats": [
+    {
+      "label": "Students Taught",
+      "target": 50
     },
-    "challenges": [
-        {
-            "title": "⚡ Mini Code Challenge",
-            "subtitle": "Test your logic! What does this code output?",
-            "code": "x = 5\nfor i in range(3):\n    x += i\nprint(x)",
-            "answer": "8",
-            "explanation": "x starts at 5. Loop runs for i=0, 1, 2. 5+0+1+2 = 8"
-        }
-    ]
+    {
+      "label": "Video Episodes",
+      "target": 10
+    },
+    {
+      "label": "YouTube Views",
+      "target": 1000
+    },
+    {
+      "label": "% Beginner Friendly",
+      "target": 100
+    }
+  ],
+  "about": {
+    "badge": "York University, Canada",
+    "heading": "Currently Teaching Python Fundamentals",
+    "text1": "I am a Python tutor currently studying at York University, Canada. I specialize in teaching beginners the foundations of programming in a clear, step-by-step manner.",
+    "text2": "My goal is to make coding accessible and practical for every student. Whether you are a high school student or a university beginner, I structure my lessons to build confidence and real-world skills.",
+    "image": "https://picsum.photos/seed/khadeeja/600/400"
+  },
+  "approach": [
+    {
+      "icon": "fas fa-list-ol",
+      "title": "Step-by-Step",
+      "desc": "No jumping ahead. We build a solid foundation before moving to complex topics."
+    },
+    {
+      "icon": "fas fa-laptop-code",
+      "title": "Hands-on",
+      "desc": "Learn by doing. Real coding exercises in every session."
+    },
+    {
+      "icon": "fas fa-globe",
+      "title": "Real Examples",
+      "desc": "Applying code to real-world scenarios so you understand the \"Why\"."
+    },
+    {
+      "icon": "fas fa-comments",
+      "title": "Interactive",
+      "desc": "Q&A and problem-solving driven sessions tailored to your pace."
+    }
+  ],
+  "episodes": [
+    {
+      "index": 1,
+      "title": "The Python Series | Trailer",
+      "duration": "1:22",
+      "youtubeUrl": "https://www.youtube.com/watch?v=EkplNj4oNeo"
+    },
+    {
+      "index": 2,
+      "title": "Variables and Data Types",
+      "duration": "2:30",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 3,
+      "title": "Simple Math Operations",
+      "duration": "3:54",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 4,
+      "title": "Conditions",
+      "duration": "4:52",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 5,
+      "title": "Logical Operators and Boolean",
+      "duration": "5:28",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 6,
+      "title": "Loops",
+      "duration": "13:44",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 7,
+      "title": "Functions Part 1",
+      "duration": "3:36",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 8,
+      "title": "Functions Part 2",
+      "duration": "4:30",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 9,
+      "title": "GUI - Getting Started with Tkinter",
+      "duration": "2:37",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    },
+    {
+      "index": 10,
+      "title": "String Operations",
+      "duration": "8:31",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
+    }
+  ],
+  "projects": [
+    {
+      "icon": "fas fa-calculator",
+      "title": "Calculator",
+      "desc": "Handle basic math operations with user input."
+    },
+    {
+      "icon": "fas fa-dice",
+      "title": "Guess the Number",
+      "desc": "Learn logic & loops with a game."
+    },
+    {
+      "icon": "fas fa-tasks",
+      "title": "To-Do List",
+      "desc": "Manage tasks using lists and functions."
+    },
+    {
+      "icon": "fas fa-window-maximize",
+      "title": "GUI Application",
+      "desc": "Create windows and buttons with Tkinter."
+    }
+  ],
+  "experience": [
+    {
+      "date": "Current",
+      "title": "Software Developer",
+      "subtitle": "YU Blueprint",
+      "desc": "Specializing in modern web development using Next.js, React.js, and TypeScript. Building scalable and user-friendly applications."
+    },
+    {
+      "date": "Past",
+      "title": "Coding Instructor",
+      "subtitle": "Kids Coding School",
+      "desc": "Taught Python programming and problem-solving to young students. Developed engaging curriculum and provided online instruction."
+    },
+    {
+      "date": "Past",
+      "title": "Student Success Mentor Lead",
+      "subtitle": "Lassonde School of Engineering",
+      "desc": "Led a team of mentors to support student success. Utilized Microsoft Power Automate, Excel, and Teams to streamline operations."
+    }
+  ],
+  "volunteering": [
+    {
+      "title": "Registration Volunteer",
+      "meta": "Collision Conf | Jun 2024",
+      "desc": "Assisted with attendee registration at one of North America's largest tech conferences."
+    },
+    {
+      "title": "Student Volunteer",
+      "meta": "Parents Voice Association - UJALA Centre",
+      "desc": "Supported special needs children in a social services setting."
+    },
+    {
+      "title": "Education Volunteer",
+      "meta": "Citizens' Education Development Foundation",
+      "desc": "Teaching underprivileged children (Apr 2019 - May 2019)."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "IBM Application Security",
+      "meta": "IBM | Issued Aug 2025",
+      "desc": "DevOps Professionals. Skills: OWASP, Flask, Vault."
+    },
+    {
+      "title": "Learning SQL Programming",
+      "meta": "LinkedIn | Issued Jul 2025",
+      "desc": "Comprehensive SQL skills."
+    },
+    {
+      "title": "Technical Support Fundamentals",
+      "meta": "Google | Issued Jul 2025",
+      "desc": "Troubleshooting and support basics."
+    },
+    {
+      "title": "DevOps Foundations: CI/CD",
+      "meta": "LinkedIn | Issued Jun 2025",
+      "desc": "Continuous Delivery and Integration principles."
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "tags": [
+        "Python",
+        "Java",
+        "C",
+        "JavaScript",
+        "TypeScript",
+        "SQL",
+        "Bash / Shell",
+        "HTML5",
+        "CSS3",
+        "RISC-V"
+      ]
+    },
+    {
+      "category": "Web Frameworks & Libraries",
+      "tags": [
+        "React.js",
+        "Next.js",
+        "Node.js",
+        "Flask",
+        "Vite",
+        "jQuery"
+      ]
+    },
+    {
+      "category": "Tools & DevOps",
+      "tags": [
+        "Git / GitHub",
+        "GitHub Actions",
+        "Linux",
+        "Vim",
+        "VS Code",
+        "Eclipse",
+        "npm"
+      ]
+    },
+    {
+      "category": "Security & Concepts",
+      "tags": [
+        "OWASP ZAP",
+        "Nmap",
+        "Web App Security",
+        "CI/CD",
+        "Data Structures",
+        "OOP",
+        "Project Management"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "stars": 5,
+      "text": "She explains Python concepts in a way that actually makes sense. I finally understand loops!",
+      "author": "Ayesha K.",
+      "role": "University Student",
+      "initials": "AK"
+    },
+    {
+      "stars": 5,
+      "text": "Her lessons are structured and easy to follow. Perfect for beginners.",
+      "author": "Daniel R.",
+      "role": "High School Student",
+      "initials": "DR"
+    },
+    {
+      "stars": 5,
+      "text": "The practice examples helped me gain confidence in coding. Highly recommended!",
+      "author": "Hamza M.",
+      "role": "Self-Learner",
+      "initials": "HM"
+    },
+    {
+      "stars": 5,
+      "text": "I went from zero programming knowledge to writing my own scripts in weeks.",
+      "author": "Sara L.",
+      "role": "Career Switcher",
+      "initials": "SL"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is this suitable for absolute beginners?",
+      "a": "Yes, absolutely! No prior programming knowledge is required. We start from the very basics like installing Python and writing your first line of code."
+    },
+    {
+      "q": "Do you offer one-on-one tutoring?",
+      "a": "Yes, I offer personalized online sessions tailored to your specific learning goals and pace."
+    },
+    {
+      "q": "What age group do you teach?",
+      "a": "I primarily teach high school students and university beginners, but I am open to anyone willing to learn!"
+    },
+    {
+      "q": "What tools do I need?",
+      "a": "You need a computer (PC/Mac) and access to the internet. We will set up VS Code and Python together in the first lesson."
+    }
+  ],
+  "contact": {
+    "email": "khadeeja@example.com",
+    "formspreeId": "YOUR_FORM_ID_HERE",
+    "linkedin": "https://www.linkedin.com/in/khadeeja-h/",
+    "github": "https://github.com/theRedKh",
+    "portfolio": "https://theredkh.github.io/my-portfolio/"
+  },
+  "challenges": [
+    {
+      "title": "⚡ Mini Code Challenge",
+      "subtitle": "Test your logic! What does this code output?",
+      "code": "x = 5\nfor i in range(3):\n    x += i\nprint(x)",
+      "answer": "8",
+      "explanation": "x starts at 5. Loop runs for i=0, 1, 2. 5+0+1+2 = 8"
+    }
+  ]
 }
