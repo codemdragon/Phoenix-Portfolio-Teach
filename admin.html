@@ -491,8 +491,31 @@
                             <textarea id="about-text2" rows="3"></textarea>
                         </div>
                         <div class="input-group">
-                            <label>Profile Image URL</label>
-                            <input type="text" id="about-image">
+                            <label>Profile Image</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 250px;">
+                                    <input type="text" id="about-image" placeholder="Image URL">
+                                    <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center;">
+                                        <input type="file" id="about-image-file" style="display: none;"
+                                            onchange="handleImageSelection(this, 'about-image-preview', 'about-image-upload-btn')">
+                                        <button class="btn-outline" style="padding: 8px 16px; font-size: 0.8rem;"
+                                            onclick="document.getElementById('about-image-file').click()">
+                                            <i class="fas fa-file-image"></i> Select File
+                                        </button>
+                                        <button id="about-image-upload-btn" class="btn-primary"
+                                            style="padding: 8px 16px; font-size: 0.8rem; display: none;"
+                                            onclick="uploadToGitHub('about-image-file', 'about-image', 'about-image-preview', 'about-image-upload-btn')">
+                                            <i class="fas fa-cloud-upload-alt"></i> Upload
+                                        </button>
+                                        <span id="upload-status"
+                                            style="font-size: 0.75rem; color: var(--text-muted);"></span>
+                                    </div>
+                                </div>
+                                <div id="about-image-preview-container" style="text-align: center;">
+                                    <img id="about-image-preview" src="" alt="Preview" class="img-preview"
+                                        style="display: none;">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -661,6 +684,78 @@
             }
         });
 
+        // --- Image Upload Logic ---
+        function handleImageSelection(input, previewId, btnId) {
+            const file = input.files[0];
+            const preview = document.getElementById(previewId);
+            const btn = document.getElementById(btnId);
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    btn.style.display = 'inline-block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function uploadToGitHub(fileInputId, urlInputId, previewId, btnId) {
+            const fileInput = document.getElementById(fileInputId);
+            const urlInput = document.getElementById(urlInputId);
+            const btn = document.getElementById(btnId);
+            const status = document.getElementById('upload-status');
+            const file = fileInput.files[0];
+
+            if (!file) return alert("Please select a file first");
+
+            status.textContent = "Uploading...";
+            btn.disabled = true;
+
+            try {
+                const base64Content = await toBase64(file);
+                const cleanBase64 = base64Content.split(',')[1];
+                const fileName = `attachments/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+                const owner = document.getElementById('repo-owner').value;
+                const repo = document.getElementById('repo-name').value;
+                const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`;
+
+                const res = await fetch(uploadUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Upload image: ${fileName}`,
+                        content: cleanBase64
+                    })
+                });
+
+                if (!res.ok) throw new Error("Upload failed. Check token permissions.");
+
+                const data = await res.json();
+                const githubUrl = data.content.path; // Use relative path for GitHub Pages compatibility
+                urlInput.value = githubUrl;
+                status.textContent = "Uploaded successfully!";
+                btn.style.display = 'none';
+
+                // Keep the preview updated with the new URL if needed, but it's already showing local blob
+            } catch (err) {
+                console.error(err);
+                status.textContent = "Error: " + err.message;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
         let API_URL = '';
         let CURRENT_SHA = '';
         let token = localStorage.getItem('portfolio_gh_token');
@@ -734,6 +829,11 @@
             document.getElementById('about-text1').value = db.about.text1;
             document.getElementById('about-text2').value = db.about.text2;
             document.getElementById('about-image').value = db.about.image;
+            const aboutPreview = document.getElementById('about-image-preview');
+            if (db.about.image) {
+                aboutPreview.src = db.about.image;
+                aboutPreview.style.display = 'block';
+            }
 
             // Contact
             document.getElementById('contact-email').value = db.contact.email;
