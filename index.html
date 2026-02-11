@@ -1209,6 +1209,15 @@
             }
         }
     </style>
+    <script>
+        // Apply theme immediately to prevent flashing
+        (function () {
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -1509,9 +1518,8 @@
                 const response = await fetch('data/db.json');
                 portfolioData = await response.json();
 
-                // Set theme from localStorage before rendering to avoid flashes
+                // Set theme toggle icon correctly (theme class already applied in head)
                 if (localStorage.getItem('portfolio-theme') === 'dark') {
-                    document.body.classList.add('dark-mode');
                     const toggle = document.getElementById('theme-toggle');
                     if (toggle) toggle.innerHTML = '<i class="fas fa-sun"></i>';
                 }
@@ -1752,7 +1760,9 @@
 
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
+            const isDark = body.classList.contains('dark-mode');
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+            if (isDark) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
             } else {
@@ -1761,7 +1771,36 @@
             }
         });
 
-        // --- 3. Scroll Animation (Fade In) ---
+        // --- 3. Contact Form Drafting ---
+        const contactForm = document.getElementById('contact-form');
+        const formFields = ['name', 'email', 'message'];
+
+        function saveFormDraft() {
+            const draft = {};
+            formFields.forEach(id => {
+                draft[id] = document.getElementById(id).value;
+            });
+            localStorage.setItem('contact-form-draft', JSON.stringify(draft));
+        }
+
+        function loadFormDraft() {
+            const draft = JSON.parse(localStorage.getItem('contact-form-draft'));
+            if (draft) {
+                formFields.forEach(id => {
+                    if (draft[id]) document.getElementById(id).value = draft[id];
+                });
+            }
+        }
+
+        contactForm.addEventListener('input', saveFormDraft);
+        contactForm.addEventListener('submit', () => {
+            localStorage.removeItem('contact-form-draft');
+        });
+
+        // Load draft on init
+        loadFormDraft();
+
+        // --- 4. Scroll Animation (Fade In) ---
         function initReveal() {
             const revealElements = document.querySelectorAll('.reveal');
             const revealOnScroll = () => {
