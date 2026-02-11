@@ -1052,6 +1052,7 @@
                         <div class="input-group"><label>Episode Index</label><input type="number" id="m-idx" value="${item.index || db.episodes.length + 1}"></div>
                         <div class="input-group"><label>Video Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
                         <div class="input-group"><label>Duration</label><input type="text" id="m-dur" value="${item.duration || ''}"></div>
+                        <div class="input-group"><label>YouTube URL</label><input type="text" id="m-url" value="${item.youtubeUrl || ''}" placeholder="https://www.youtube.com/watch?v=..."></div>
                     `;
                     break;
                 case 'reviews':
@@ -1105,7 +1106,7 @@
                     newItem = { icon: v('m-icon'), title: v('m-title'), desc: v('m-desc') };
                     break;
                 case 'episodes':
-                    newItem = { index: parseInt(v('m-idx')), title: v('m-title'), duration: v('m-dur') };
+                    newItem = { index: parseInt(v('m-idx')), title: v('m-title'), duration: v('m-dur'), youtubeUrl: v('m-url') };
                     break;
                 case 'reviews':
                     newItem = { stars: parseInt(v('m-stars')), text: v('m-text'), author: v('m-author'), role: v('m-role'), initials: v('m-init') };
