@@ -305,14 +305,11 @@
     },
     "challenges": [
         {
+            "title": "⚡ Mini Code Challenge",
+            "subtitle": "Test your logic! What does this code output?",
             "code": "x = 5\nfor i in range(3):\n    x += i\nprint(x)",
             "answer": "8",
             "explanation": "x starts at 5. Loop runs for i=0, 1, 2. 5+0+1+2 = 8"
-        },
-        {
-            "code": "my_list = [1, 2, 3]\nprint(my_list[1])",
-            "answer": "2",
-            "explanation": "Python uses 0-based indexing. index 0 is 1, index 1 is 2."
         }
     ]
 }
