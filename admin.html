@@ -651,9 +651,15 @@
                                 <input type="text" id="contact-github">
                             </div>
                         </div>
-                        <div class="input-group">
-                            <label>Portfolio URL</label>
-                            <input type="text" id="contact-portfolio">
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Portfolio URL</label>
+                                <input type="text" id="contact-portfolio">
+                            </div>
+                            <div class="input-group">
+                                <label>YouTube URL</label>
+                                <input type="text" id="contact-youtube">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -888,6 +894,7 @@
             db.contact.linkedin = v('contact-linkedin');
             db.contact.github = v('contact-github');
             db.contact.portfolio = v('contact-portfolio');
+            db.contact.youtube = v('contact-youtube');
         }
 
         // Add auto-save listeners
@@ -921,6 +928,7 @@
             document.getElementById('contact-linkedin').value = db.contact.linkedin;
             document.getElementById('contact-github').value = db.contact.github;
             document.getElementById('contact-portfolio').value = db.contact.portfolio;
+            document.getElementById('contact-youtube').value = db.contact.youtube || '';
 
             renderLists();
         }
@@ -1149,6 +1157,7 @@
             db.contact.linkedin = v('contact-linkedin');
             db.contact.github = v('contact-github');
             db.contact.portfolio = v('contact-portfolio');
+            db.contact.youtube = v('contact-youtube');
 
             const status = document.getElementById('save-status');
             const indicator = document.getElementById('save-indicator');
