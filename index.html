@@ -1771,6 +1771,14 @@
             }
         });
 
+        // Load saved theme on page load
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
         // --- 3. Contact Form Drafting ---
         const contactForm = document.getElementById('contact-form');
         const formFields = ['name', 'email', 'message'];
