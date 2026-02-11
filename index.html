@@ -1212,6 +1212,10 @@
     <script>
         // Apply theme immediately to prevent flashing
         (function () {
+            // Disable browser scroll restoration to prevent jumping
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
             const savedTheme = localStorage.getItem('portfolio-theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
@@ -1504,6 +1508,8 @@
         function hidePreloader() {
             const preloader = document.getElementById('preloader');
             if (preloader) {
+                // Ensure page is at the top before fading out
+                window.scrollTo(0, 0);
                 preloader.classList.add('preloader-hidden');
             }
         }
