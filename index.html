@@ -1622,7 +1622,7 @@
             const episodes = portfolioData.episodes;
             const container = document.getElementById('playlist-container');
             container.innerHTML = episodes.map(ep => `
-                <div class="episode-item ${ep.index === 1 ? 'active' : ''}" onclick="changeVideo(${ep.index}, '${ep.title}')">
+                <div class="episode-item ${ep.index === 1 ? 'active' : ''}" onclick="changeVideo('${ep.youtubeUrl}', '${ep.title}', ${ep.index})">
                     <div class="ep-info">
                         <span class="ep-title">${ep.index}. ${ep.title}</span>
                         <span class="ep-duration">${ep.duration}</span>
@@ -1631,8 +1631,12 @@
                 </div>
             `).join('');
 
-            // Re-render initial video title
-            document.getElementById('current-video-title').innerText = episodes[0].title;
+            // Set initial video
+            const firstEpisode = episodes[0];
+            if (firstEpisode && firstEpisode.youtubeUrl) {
+                document.getElementById('current-video-title').innerText = firstEpisode.title;
+                document.getElementById('main-player').src = getEmbedUrl(firstEpisode.youtubeUrl);
+            }
         }
 
         function renderProjects() {
@@ -1913,16 +1917,42 @@
 
         // Reveal btn logic moved into renderChallenges for dynamic handling
 
+        // --- Helper function to convert YouTube URLs to embed format ---
+        function getEmbedUrl(youtubeUrl) {
+            if (!youtubeUrl) return '';
+            
+            // Extract video ID from various YouTube URL formats
+            let videoId = '';
+            
+            // Format: https://www.youtube.com/watch?v=VIDEO_ID
+            if (youtubeUrl.includes('watch?v=')) {
+                videoId = youtubeUrl.split('watch?v=')[1].split('&')[0];
+            }
+            // Format: https://youtu.be/VIDEO_ID
+            else if (youtubeUrl.includes('youtu.be/')) {
+                videoId = youtubeUrl.split('youtu.be/')[1].split('?')[0];
+            }
+            // Format: https://www.youtube.com/embed/VIDEO_ID
+            else if (youtubeUrl.includes('/embed/')) {
+                return youtubeUrl; // Already in embed format
+            }
+            
+            return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+        }
+
         // --- 6. Course Navigation ---
-        window.changeVideo = function (index, title) {
-            const baseEmbedUrl = "https://www.youtube.com/embed/EkplNj4oNeo?list=PLdTqzRgsIX6nremOqEvAiLU1e7K88YeFd&index=";
-            document.getElementById('main-player').src = baseEmbedUrl + index;
-            document.getElementById('current-video-title').innerText = title;
-            const items = document.querySelectorAll('.episode-item');
-            items.forEach((item, i) => {
-                item.classList.toggle('active', i + 1 === index);
-                if (i + 1 === index) item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
+        window.changeVideo = function (youtubeUrl, title, index) {
+            const embedUrl = getEmbedUrl(youtubeUrl);
+            if (embedUrl) {
+                document.getElementById('main-player').src = embedUrl;
+                document.getElementById('current-video-title').innerText = title;
+                
+                const items = document.querySelectorAll('.episode-item');
+                items.forEach((item, i) => {
+                    item.classList.toggle('active', i + 1 === index);
+                    if (i + 1 === index) item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            }
         };
 
         // --- 7. Sidebar Logic ---
