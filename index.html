@@ -1487,12 +1487,8 @@
             <h3>Khadeeja Haji</h3>
             <p>Python Tutor | York University</p>
 
-            <div class="social-links">
-                <a href="https://www.youtube.com/@StoriesGamesAndMore" target="_blank"><i
-                        class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="social-links" id="footer-socials">
+                <!-- Dynamic Content -->
             </div>
 
             <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2023 Khadeeja Haji. All rights reserved.</p>
@@ -1755,6 +1751,13 @@
                     </ul>
                 </div>
             `;
+
+            // Update footer socials as well
+            document.getElementById('footer-socials').innerHTML = `
+                <a href="${c.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="${c.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="${c.github}" target="_blank"><i class="fab fa-github"></i></a>
+            `;
         }
 
         // --- 2. Dark Mode Toggle ---
@@ -1920,10 +1923,10 @@
         // --- Helper function to convert YouTube URLs to embed format ---
         function getEmbedUrl(youtubeUrl) {
             if (!youtubeUrl) return '';
-            
+
             // Extract video ID from various YouTube URL formats
             let videoId = '';
-            
+
             // Format: https://www.youtube.com/watch?v=VIDEO_ID
             if (youtubeUrl.includes('watch?v=')) {
                 videoId = youtubeUrl.split('watch?v=')[1].split('&')[0];
@@ -1936,7 +1939,7 @@
             else if (youtubeUrl.includes('/embed/')) {
                 return youtubeUrl; // Already in embed format
             }
-            
+
             return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
         }
 
@@ -1946,7 +1949,7 @@
             if (embedUrl) {
                 document.getElementById('main-player').src = embedUrl;
                 document.getElementById('current-video-title').innerText = title;
-                
+
                 const items = document.querySelectorAll('.episode-item');
                 items.forEach((item, i) => {
                     item.classList.toggle('active', i + 1 === index);
