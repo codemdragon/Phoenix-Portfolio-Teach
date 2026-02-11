@@ -192,147 +192,23 @@
 
         .theme-toggle {
             cursor: pointer;
-            font-size: 1.1rem;
-            padding: 10px;
+            font-size: 1.2rem;
+            padding: 8px;
             border-radius: 50%;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
         }
 
-        .theme-toggle:hover {
-            border-color: var(--py-blue);
-            color: var(--py-blue);
+        /* --- HERO SECTION --- */
+        #hero {
+            padding-top: 140px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, rgba(48, 105, 152, 0.05) 0%, rgba(255, 212, 59, 0.05) 100%);
         }
 
-        body.dark-mode .theme-toggle:hover {
-            border-color: var(--py-yellow);
-            color: var(--py-yellow);
-        }
-
-        /* --- HAMBURGER MENU --- */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            flex-direction: column;
-            gap: 5px;
-            z-index: 1100;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-main);
-            transition: all 0.3s ease;
-        }
-
-        /* --- SIDEBAR --- */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: var(--bg-body);
-            z-index: 1050;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .sidebar.active {
-            right: 0;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 1040;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        .close-sidebar {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .sidebar-links {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .sidebar-links a {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: color 0.3s;
-        }
-
-        .sidebar-links a:hover {
-            color: var(--py-blue);
-            padding-left: 10px;
-        }
-
-        body.dark-mode .sidebar-links a:hover {
-            color: var(--py-yellow);
-        }
-
-        .sidebar-footer {
-            margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
+        body.dark-mode #hero {
+            background: linear-gradient(135deg, rgba(48, 105, 152, 0.2) 0%, rgba(255, 212, 59, 0.1) 100%);
         }
 
         .hero-content h1 {
@@ -1097,41 +973,11 @@
                 <a href="#course">Course</a>
                 <a href="#contact">Contact</a>
             </div>
-            <div style="display: flex; gap: 15px; align-items: center;">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
-
-    <!-- Mobile Sidebar -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Khadeeja Haji <span style="color:var(--py-yellow)">.</span></div>
-            <button class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="sidebar-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
-            <a href="#course">Course</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="sidebar-footer">
-            <div class="social-links">
-                <a href="https://www.youtube.com/@StoriesGamesAndMore" target="_blank"><i
-                        class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <header id="hero" class="container text-center reveal">
@@ -1693,27 +1539,6 @@
                 if (i + 1 === index) item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
         };
-
-        // --- 7. Mobile Sidebar Logic ---
-        const hamburger = document.getElementById('hamburger-menu');
-        const sidebar = document.getElementById('sidebar');
-        const sidebarOverlay = document.getElementById('sidebar-overlay');
-        const closeSidebarBtn = document.getElementById('close-sidebar');
-        const sidebarLinks = document.querySelectorAll('.sidebar-links a');
-
-        const toggleSidebar = (isActive) => {
-            sidebar.classList.toggle('active', isActive);
-            sidebarOverlay.classList.toggle('active', isActive);
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        };
-
-        hamburger.addEventListener('click', () => toggleSidebar(true));
-        closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
-        sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', () => toggleSidebar(false));
-        });
 
         // --- Start Loading ---
         fetchAndRender();
