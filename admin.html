@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #306998;
+            --py-yellow: #FFD43B;
+            --bg: #f8fafc;
+            --white: #fff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding-bottom: 50px;
+        }
+
+        .navbar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar h2 {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .navbar .logo-dot {
+            color: var(--py-yellow);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--py-yellow);
+            display: inline-block;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(48, 105, 152, 0.1);
+        }
+
+        .row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .row .input-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #26547a;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(48, 105, 152, 0.05);
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+
+        .btn-add {
+            background: #f0f9ff;
+            color: #0369a1;
+            border: 1px dashed #7dd3fc;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .item-list {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .item-list li {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.2s;
+        }
+
+        .item-list li:hover {
+            border-color: var(--primary);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .item-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .login-box h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .login-box p {
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .status {
+            margin-top: 1rem;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #f0fdf4;
+            color: #166534;
+            display: block;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status.error {
+            background: #fef2f2;
+            color: #991b1b;
+            display: block;
+            border: 1px solid #fecaca;
+        }
+
+        .badge-github {
+            background: #000;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* Sections Grid */
+        .sections-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .section-tab {
+            padding: 8px 16px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .section-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Image Preview */
+        .img-preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>Portfolio Admin <span class="logo-dot">.</span></h2>
+            <p>Securely manage your professional portfolio</p>
+            <div class="input-group">
+                <label>GitHub Personal Access Token</label>
+                <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+            </div>
+            <button class="btn-primary" style="width: 100%;" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Access Manager
+            </button>
+            <p style="margin-top: 1.5rem; font-size: 0.75rem;">
+                <i class="fas fa-shield-alt"></i> Tokens are stored locally in your browser.
+            </p>
+        </div>
+    </div>
+
+    <div id="admin-app" style="display:none;">
+        <div class="navbar">
+            <h2>Zen Portfolio Manager <span class="logo-dot">.</span> <span class="badge-github">API</span></h2>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span id="save-indicator" style="font-size: 0.8rem; color: var(--text-muted); display: none;"><i
+                        class="fas fa-sync fa-spin"></i> Saving...</span>
+                <button onclick="logout()" class="btn-outline" style="padding: 6px 15px;">Logout</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Global Config -->
+            <div class="card">
+                <h3><i class="fas fa-cog"></i> GitHub Repository</h3>
+                <div class="row">
+                    <div class="input-group">
+                        <label>Owner</label>
+                        <input type="text" id="repo-owner" value="codemdragon">
+                    </div>
+                    <div class="input-group">
+                        <label>Repo Name</label>
+                        <input type="text" id="repo-name" value="Phoenix-Portfolio-Teach">
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="loadDb()"><i class="fas fa-download"></i> Load Current
+                    Data</button>
+                <div id="load-status" class="status"></div>
+            </div>
+
+            <!-- Sections Navigation -->
+            <div class="sections-nav" id="sections-tabs">
+                <div class="section-tab active" data-target="section-hero">Hero</div>
+                <div class="section-tab" data-target="section-about">About</div>
+                <div class="section-tab" data-target="section-approach">Approach</div>
+                <div class="section-tab" data-target="section-experience">Experience</div>
+                <div class="section-tab" data-target="section-skills">Skills</div>
+                <div class="section-tab" data-target="section-projects">Projects</div>
+                <div class="section-tab" data-target="section-episodes">Episodes</div>
+                <div class="section-tab" data-target="section-reviews">Reviews</div>
+                <div class="section-tab" data-target="section-faq">FAQ</div>
+                <div class="section-tab" data-target="section-contact">Contact</div>
+            </div>
+
+            <div id="editor-sections">
+                <!-- Hero Section -->
+                <div id="section-hero" class="editor-section">
+                    <div class="card">
+                        <h3>Hero Content</h3>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Name</label>
+                                <input type="text" id="hero-name">
+                            </div>
+                            <div class="input-group">
+                                <label>Job Title</label>
+                                <input type="text" id="hero-title">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Tagline</label>
+                            <textarea id="hero-tagline" rows="2"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Primary Button Text</label>
+                                <input type="text" id="hero-btn1-text">
+                            </div>
+                            <div class="input-group">
+                                <label>Link</label>
+                                <input type="text" id="hero-btn1-link">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Secondary Button Text</label>
+                                <input type="text" id="hero-btn2-text">
+                            </div>
+                            <div class="input-group">
+                                <label>Link</label>
+                                <input type="text" id="hero-btn2-link">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div id="section-about" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>About Me</h3>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Badge Text (University)</label>
+                                <input type="text" id="about-badge">
+                            </div>
+                            <div class="input-group">
+                                <label>Heading</label>
+                                <input type="text" id="about-heading">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Paragraph 1</label>
+                            <textarea id="about-text1" rows="3"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Paragraph 2</label>
+                            <textarea id="about-text2" rows="3"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Profile Image URL</label>
+                            <input type="text" id="about-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teaching Approach Section -->
+                <div id="section-approach" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Teaching Approach</h3>
+                        <ul class="item-list" id="approach-list"></ul>
+                        <button class="btn-add" onclick="openModal('approach')"><i class="fas fa-plus"></i> Add
+                            Approach</button>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div id="section-experience" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Work Experience</h3>
+                        <ul class="item-list" id="experience-list"></ul>
+                        <button class="btn-add" onclick="openModal('experience')"><i class="fas fa-plus"></i> Add
+                            Experience</button>
+                    </div>
+                    <div class="card">
+                        <h3>Volunteering</h3>
+                        <ul class="item-list" id="volunteering-list"></ul>
+                        <button class="btn-add" onclick="openModal('volunteering')"><i class="fas fa-plus"></i> Add
+                            Volunteer Role</button>
+                    </div>
+                    <div class="card">
+                        <h3>Certifications</h3>
+                        <ul class="item-list" id="certifications-list"></ul>
+                        <button class="btn-add" onclick="openModal('certifications')"><i class="fas fa-plus"></i> Add
+                            Certification</button>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div id="section-skills" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Skills Categories</h3>
+                        <div id="skills-container"></div>
+                        <button class="btn-add" onclick="addNewSkillCategory()"><i class="fas fa-plus"></i> Add
+                            Category</button>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div id="section-projects" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Student Projects</h3>
+                        <ul class="item-list" id="projects-list"></ul>
+                        <button class="btn-add" onclick="openModal('projects')"><i class="fas fa-plus"></i> Add
+                            Project</button>
+                    </div>
+                </div>
+
+                <!-- Episodes Section -->
+                <div id="section-episodes" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Course Episodes</h3>
+                        <ul class="item-list" id="episodes-list"></ul>
+                        <button class="btn-add" onclick="openModal('episodes')"><i class="fas fa-plus"></i> Add
+                            Episode</button>
+                    </div>
+                </div>
+
+                <!-- Reviews Section -->
+                <div id="section-reviews" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Student Reviews</h3>
+                        <ul class="item-list" id="reviews-list"></ul>
+                        <button class="btn-add" onclick="openModal('reviews')"><i class="fas fa-plus"></i> Add
+                            Review</button>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div id="section-faq" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>FAQ Items</h3>
+                        <ul class="item-list" id="faq-list"></ul>
+                        <button class="btn-add" onclick="openModal('faq')"><i class="fas fa-plus"></i> Add FAQ</button>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div id="section-contact" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Contact & Socials</h3>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contact-email">
+                            </div>
+                            <div class="input-group"
+                                style="border: 2px solid #e11d48; padding: 10px; border-radius: 8px;">
+                                <label style="color: #e11d48;">Formspree ID (Important)</label>
+                                <input type="text" id="contact-formspree" placeholder="e.g. xxxxxxxx">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <label>LinkedIn URL</label>
+                                <input type="text" id="contact-linkedin">
+                            </div>
+                            <div class="input-group">
+                                <label>GitHub URL</label>
+                                <input type="text" id="contact-github">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Portfolio URL</label>
+                            <input type="text" id="contact-portfolio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Save -->
+            <div class="card" style="text-align: center; border-top: 4px solid #2e7d32;">
+                <h3 style="border-bottom-color: #2e7d32;">Publish Changes</h3>
+                <p style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                    This will update `data/db.json` and deploy changes to your live website.
+                </p>
+                <button class="btn-primary" onclick="saveToGitHub()"
+                    style="background: #2e7d32; width: 100%; max-width: 400px; justify-content: center;">
+                    <i class="fas fa-rocket"></i> Push to GitHub
+                </button>
+                <div id="save-status" class="status"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal Modal -->
+    <div id="universal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title" style="margin-bottom: 20px;">Edit Item</h3>
+            <div id="modal-fields"></div>
+            <div style="margin-top: 2rem; display: flex; gap: 10px;">
+                <button class="btn-primary" onclick="saveModalItem()">Save Item</button>
+                <button class="btn-outline" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let API_URL = '';
+        let CURRENT_SHA = '';
+        let token = localStorage.getItem('portfolio_gh_token');
+        let db = {};
+        let activeModalType = '';
+        let editingItemIndex = null;
+
+        // --- Initialization ---
+        if (token) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-app').style.display = 'block';
+            loadDb();
+        }
+
+        function login() {
+            const inputToken = document.getElementById('gh-token').value.trim();
+            if (inputToken.length > 20) {
+                localStorage.setItem('portfolio_gh_token', inputToken);
+                token = inputToken;
+                location.reload();
+            } else { alert('Please enter a valid GitHub token'); }
+        }
+
+        function logout() { localStorage.removeItem('portfolio_gh_token'); location.reload(); }
+
+        // --- Tabs ---
+        document.querySelectorAll('.section-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.editor-section').forEach(s => s.style.display = 'none');
+                document.getElementById(tab.dataset.target).style.display = 'block';
+            });
+        });
+
+        // --- Data Loading ---
+        async function loadDb() {
+            const owner = document.getElementById('repo-owner').value;
+            const repo = document.getElementById('repo-name').value;
+            API_URL = `https://api.github.com/repos/${owner}/${repo}/contents/data/db.json`;
+            const status = document.getElementById('load-status');
+
+            try {
+                status.textContent = "Fetching data..."; status.className = 'status'; status.style.display = 'block';
+                const res = await fetch(API_URL, { headers: { 'Authorization': `token ${token}` } });
+                if (!res.ok) throw new Error("Load failed. Status: " + res.status);
+                const data = await res.json();
+                CURRENT_SHA = data.sha;
+                db = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+                populateForm();
+                status.textContent = "Data loaded successfully!"; status.classList.add('success');
+                setTimeout(() => status.style.display = 'none', 3000);
+            } catch (err) {
+                status.textContent = "Error: " + err.message; status.classList.add('error');
+            }
+        }
+
+        function populateForm() {
+            // Hero
+            document.getElementById('hero-name').value = db.hero.name;
+            document.getElementById('hero-title').value = db.hero.title;
+            document.getElementById('hero-tagline').value = db.hero.tagline;
+            document.getElementById('hero-btn1-text').value = db.hero.primaryBtn.text;
+            document.getElementById('hero-btn1-link').value = db.hero.primaryBtn.link;
+            document.getElementById('hero-btn2-text').value = db.hero.secondaryBtn.text;
+            document.getElementById('hero-btn2-link').value = db.hero.secondaryBtn.link;
+
+            // About
+            document.getElementById('about-badge').value = db.about.badge;
+            document.getElementById('about-heading').value = db.about.heading;
+            document.getElementById('about-text1').value = db.about.text1;
+            document.getElementById('about-text2').value = db.about.text2;
+            document.getElementById('about-image').value = db.about.image;
+
+            // Contact
+            document.getElementById('contact-email').value = db.contact.email;
+            document.getElementById('contact-formspree').value = db.contact.formspreeId;
+            document.getElementById('contact-linkedin').value = db.contact.linkedin;
+            document.getElementById('contact-github').value = db.contact.github;
+            document.getElementById('contact-portfolio').value = db.contact.portfolio;
+
+            renderLists();
+        }
+
+        function renderLists() {
+            renderGenericList('experience', db.experience, e => `<strong>${e.title}</strong><p>${e.date} | ${e.subtitle}</p>`);
+            renderGenericList('approach', db.approach, a => `<strong>${a.title}</strong><p>${a.desc}</p>`);
+            renderGenericList('volunteering', db.volunteering, v => `<strong>${v.title}</strong><p>${v.meta}</p>`);
+            renderGenericList('certifications', db.certifications, c => `<strong>${c.title}</strong><p>${c.meta}</p>`);
+            renderGenericList('projects', db.projects, p => `<strong>${p.title}</strong><p>${p.desc}</p>`);
+            renderGenericList('episodes', db.episodes, ep => `<strong>${ep.index}. ${ep.title}</strong><p>${ep.duration}</p>`);
+            renderGenericList('reviews', db.reviews, r => `<strong>${r.author}</strong><p>${r.text.substring(0, 50)}...</p>`);
+            renderGenericList('faq', db.faq, f => `<strong>Q: ${f.q}</strong><p>A: ${f.a.substring(0, 50)}...</p>`);
+
+            renderSkills();
+        }
+
+        function renderGenericList(id, data, formatFn) {
+            const list = document.getElementById(`${id}-list`);
+            list.innerHTML = data.map((item, i) => `
+                <li>
+                    <div class="item-info">${formatFn(item)}</div>
+                    <div style="display:flex; gap:5px;">
+                        <button class="btn-outline" style="padding:4px 8px; font-size:0.7rem;" onclick="openModal('${id}', ${i})">Edit</button>
+                        <button class="btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteItem('${id}', ${i})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = db.skills.map((s, i) => `
+                <div style="border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 10px; background: #fff;">
+                    <div class="row">
+                        <div class="input-group">
+                            <label>Category Name</label>
+                            <input type="text" value="${s.category}" onchange="updateSkillCategory(${i}, this.value)">
+                        </div>
+                        <button class="btn-danger" style="margin-top: 25px; height: 42px;" onclick="deleteSkillCategory(${i})"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="input-group">
+                        <label>Tags (comma separated)</label>
+                        <textarea rows="2" onchange="updateSkillTags(${i}, this.value)">${s.tags.join(', ')}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- List Actions ---
+        function deleteItem(type, index) {
+            if (confirm('Delete this item?')) {
+                db[type].splice(index, 1);
+                renderLists();
+            }
+        }
+
+        function updateSkillCategory(index, val) { db.skills[index].category = val; }
+        function updateSkillTags(index, val) { db.skills[index].tags = val.split(',').map(s => s.trim()).filter(s => s); }
+        function deleteSkillCategory(index) { if (confirm('Delete category?')) { db.skills.splice(index, 1); renderSkills(); } }
+        function addNewSkillCategory() { db.skills.push({ category: 'New Category', tags: [] }); renderSkills(); }
+
+        // --- Modal System ---
+        function openModal(type, index = null) {
+            activeModalType = type;
+            editingItemIndex = index;
+            const fields = document.getElementById('modal-fields');
+            const title = document.getElementById('modal-title');
+            let html = '';
+
+            const item = index !== null ? db[type][index] : {};
+
+            switch (type) {
+                case 'experience':
+                    title.innerText = index !== null ? 'Edit Experience' : 'Add Experience';
+                    html = `
+                        <div class="input-group"><label>Date Range</label><input type="text" id="m-date" value="${item.date || ''}"></div>
+                        <div class="input-group"><label>Job Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Company/Subtitle</label><input type="text" id="m-sub" value="${item.subtitle || ''}"></div>
+                        <div class="input-group"><label>Description</label><textarea id="m-desc" rows="3">${item.desc || ''}</textarea></div>
+                    `;
+                    break;
+                case 'approach':
+                    html = `
+                        <div class="input-group"><label>FontAwesome Icon Class</label><input type="text" id="m-icon" value="${item.icon || 'fas fa-star'}"></div>
+                        <div class="input-group"><label>Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Description</label><textarea id="m-desc" rows="2">${item.desc || ''}</textarea></div>
+                    `;
+                    break;
+                case 'volunteering':
+                case 'certifications':
+                    title.innerText = `Manage ${type}`;
+                    html = `
+                        <div class="input-group"><label>Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Meta (Org / Date)</label><input type="text" id="m-meta" value="${item.meta || ''}"></div>
+                        <div class="input-group"><label>Description</label><textarea id="m-desc" rows="2">${item.desc || ''}</textarea></div>
+                    `;
+                    break;
+                case 'projects':
+                    html = `
+                        <div class="input-group"><label>FontAwesome Icon Class</label><input type="text" id="m-icon" value="${item.icon || 'fas fa-rocket'}"></div>
+                        <div class="input-group"><label>Project Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Short Description</label><textarea id="m-desc" rows="2">${item.desc || ''}</textarea></div>
+                    `;
+                    break;
+                case 'episodes':
+                    html = `
+                        <div class="input-group"><label>Episode Index</label><input type="number" id="m-idx" value="${item.index || db.episodes.length + 1}"></div>
+                        <div class="input-group"><label>Video Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Duration</label><input type="text" id="m-dur" value="${item.duration || ''}"></div>
+                    `;
+                    break;
+                case 'reviews':
+                    html = `
+                        <div class="row">
+                            <div class="input-group"><label>Stars (1-5)</label><input type="number" id="m-stars" value="${item.stars || 5}" min="1" max="5"></div>
+                            <div class="input-group"><label>Author Initials</label><input type="text" id="m-init" value="${item.initials || ''}"></div>
+                        </div>
+                        <div class="input-group"><label>Author Name</label><input type="text" id="m-author" value="${item.author || ''}"></div>
+                        <div class="input-group"><label>Role</label><input type="text" id="m-role" value="${item.role || ''}"></div>
+                        <div class="input-group"><label>Review Text</label><textarea id="m-text" rows="3">${item.text || ''}</textarea></div>
+                    `;
+                    break;
+                case 'faq':
+                    html = `
+                        <div class="input-group"><label>Question</label><input type="text" id="m-q" value="${item.q || ''}"></div>
+                        <div class="input-group"><label>Answer</label><textarea id="m-a" rows="3">${item.a || ''}</textarea></div>
+                    `;
+                    break;
+            }
+
+            fields.innerHTML = html;
+            document.getElementById('universal-modal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('universal-modal').style.display = 'none'; }
+
+        function saveModalItem() {
+            let newItem = {};
+            switch (activeModalType) {
+                case 'experience':
+                    newItem = { date: v('m-date'), title: v('m-title'), subtitle: v('m-sub'), desc: v('m-desc') };
+                    break;
+                case 'approach':
+                    newItem = { icon: v('m-icon'), title: v('m-title'), desc: v('m-desc') };
+                    break;
+                case 'volunteering':
+                case 'certifications':
+                    newItem = { title: v('m-title'), meta: v('m-meta'), desc: v('m-desc') };
+                    break;
+                case 'projects':
+                    newItem = { icon: v('m-icon'), title: v('m-title'), desc: v('m-desc') };
+                    break;
+                case 'episodes':
+                    newItem = { index: parseInt(v('m-idx')), title: v('m-title'), duration: v('m-dur') };
+                    break;
+                case 'reviews':
+                    newItem = { stars: parseInt(v('m-stars')), text: v('m-text'), author: v('m-author'), role: v('m-role'), initials: v('m-init') };
+                    break;
+                case 'faq':
+                    newItem = { q: v('m-q'), a: v('m-a') };
+                    break;
+            }
+
+            if (editingItemIndex !== null) db[activeModalType][editingItemIndex] = newItem;
+            else db[activeModalType].push(newItem);
+
+            renderLists();
+            closeModal();
+        }
+
+        function v(id) { return document.getElementById(id).value; }
+
+        // --- Final Save ---
+        async function saveToGitHub() {
+            // Update db object from form fields
+            db.hero.name = v('hero-name');
+            db.hero.title = v('hero-title');
+            db.hero.tagline = v('hero-tagline');
+            db.hero.primaryBtn = { text: v('hero-btn1-text'), link: v('hero-btn1-link') };
+            db.hero.secondaryBtn = { text: v('hero-btn2-text'), link: v('hero-btn2-link') };
+
+            db.about.badge = v('about-badge');
+            db.about.heading = v('about-heading');
+            db.about.text1 = v('about-text1');
+            db.about.text2 = v('about-text2');
+            db.about.image = v('about-image');
+
+            db.contact.email = v('contact-email');
+            db.contact.formspreeId = v('contact-formspree');
+            db.contact.linkedin = v('contact-linkedin');
+            db.contact.github = v('contact-github');
+            db.contact.portfolio = v('contact-portfolio');
+
+            const status = document.getElementById('save-status');
+            const indicator = document.getElementById('save-indicator');
+
+            status.className = 'status'; status.textContent = 'Publishing to GitHub...'; status.style.display = 'block';
+            indicator.style.display = 'inline-block';
+
+            try {
+                const content = btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2))));
+                const res = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "Update Portfolio Data via Admin Panel", content: content, sha: CURRENT_SHA })
+                });
+
+                if (!res.ok) throw new Error('Failed to update GitHub. Check token permissions and repo settings.');
+                const data = await res.json();
+                CURRENT_SHA = data.content.sha;
+
+                status.textContent = 'Successfully published! Your portfolio is being updated.';
+                status.classList.add('success');
+            } catch (err) {
+                status.textContent = 'Error: ' + err.message;
+                status.classList.add('error');
+            } finally {
+                indicator.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
