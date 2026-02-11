@@ -1271,31 +1271,8 @@
 
     <!-- Interactive Coding Challenge -->
     <section id="challenge" class="section-padding">
-        <div class="container reveal">
-            <h2 class="section-title">⚡ Mini Code Challenge</h2>
-            <p class="section-subtitle">Test your logic! What does this code output?</p>
-
-            <div class="challenge-box">
-                <div class="challenge-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <code>
-                    <span class="code-line"><span class="keyword">x</span> = <span class="number">5</span></span>
-                    <span class="code-line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):</span>
-                    <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;x += i</span>
-                    <span class="code-line"><span class="function">print</span>(x)</span>
-                </code>
-                <div class="answer-box" id="answer">
-                    <p><strong>Output:</strong> 8</p>
-                    <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.8;">(x starts at 5. Loop runs for i=0, 1,
-                        2. 5+0+1+2 = 8)</p>
-                </div>
-            </div>
-
-            <button class="btn btn-secondary" id="reveal-btn" style="background: white; color: var(--py-blue);">Reveal
-                Answer</button>
+        <div class="container reveal" id="challenge-dynamic">
+            <!-- Dynamic Content -->
         </div>
     </section>
 
@@ -1448,6 +1425,7 @@
                 renderSkills();
                 renderReviews();
                 renderFAQ();
+                renderChallenges();
                 renderContact();
 
                 // Re-initialize scroll animations and stats observer
@@ -1617,6 +1595,53 @@
                     <div class="faq-answer">${f.a}</div>
                 </details>
             `).join('');
+        }
+
+        let currentChallengeIndex = 0;
+        function renderChallenges() {
+            const challenges = portfolioData.challenges;
+            if (!challenges || challenges.length === 0) return;
+
+            const c = challenges[currentChallengeIndex];
+            const container = document.getElementById('challenge-dynamic');
+
+            container.innerHTML = `
+                <h2 class="section-title">⚡ Mini Code Challenge</h2>
+                <p class="section-subtitle">Test your logic! What does this code output? (${currentChallengeIndex + 1}/${challenges.length})</p>
+                <div class="challenge-box">
+                    <div class="challenge-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <pre><code>${c.code}</code></pre>
+                    <div class="answer-box" id="answer" style="display: none;">
+                        <p><strong>Output:</strong> ${c.answer}</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.8;">${c.explanation}</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" id="reveal-btn" style="background: white; color: var(--py-blue);" onclick="toggleChallengeAnswer()">Reveal Answer</button>
+                    ${challenges.length > 1 ? `<button class="btn btn-outline" onclick="nextChallenge()" style="background: rgba(255,255,255,0.1);">Next Challenge <i class="fas fa-arrow-right"></i></button>` : ''}
+                </div>
+            `;
+        }
+
+        function toggleChallengeAnswer() {
+            const ans = document.getElementById('answer');
+            const btn = document.getElementById('reveal-btn');
+            if (ans.style.display === 'none') {
+                ans.style.display = 'block';
+                btn.innerText = 'Hide Answer';
+            } else {
+                ans.style.display = 'none';
+                btn.innerText = 'Reveal Answer';
+            }
+        }
+
+        function nextChallenge() {
+            currentChallengeIndex = (currentChallengeIndex + 1) % portfolioData.challenges.length;
+            renderChallenges();
         }
 
         function renderContact() {
