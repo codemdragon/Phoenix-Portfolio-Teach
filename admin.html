@@ -410,6 +410,17 @@
                 <button class="btn-primary" onclick="loadDb()"><i class="fas fa-download"></i> Load Current
                     Data</button>
                 <div id="load-status" class="status"></div>
+                <div id="draft-alert" class="card"
+                    style="display:none; background:#fff3cd; border:1px solid #ffeeba; margin-top:10px; color:#856404; padding:15px; border-radius:8px;">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Draft Detected!</strong> You have unsaved
+                        changes from your previous session.</p>
+                    <div style="margin-top:10px; display:flex; gap:10px;">
+                        <button class="btn-primary" onclick="restoreDraft()"
+                            style="background:#856404; font-size:0.8rem;">Restore Draft</button>
+                        <button class="btn-outline" onclick="clearDraft()"
+                            style="border-color:#856404; color:#856404; font-size:0.8rem;">Discard Draft</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Sections Navigation -->
@@ -819,13 +830,68 @@
                 const data = await res.json();
                 CURRENT_SHA = data.sha;
                 db = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+
+                checkDraft();
                 populateForm();
+
                 status.textContent = "Data loaded successfully!"; status.classList.add('success');
                 setTimeout(() => status.style.display = 'none', 3000);
             } catch (err) {
                 status.textContent = "Error: " + err.message; status.classList.add('error');
             }
         }
+
+        // --- Drafting Logic ---
+        function checkDraft() {
+            const draft = localStorage.getItem('admin_db_draft');
+            if (draft) {
+                document.getElementById('draft-alert').style.display = 'block';
+            }
+        }
+
+        function saveDraft() {
+            syncDbWithUI();
+            localStorage.setItem('admin_db_draft', JSON.stringify(db));
+        }
+
+        function restoreDraft() {
+            const draft = localStorage.getItem('admin_db_draft');
+            if (draft) {
+                db = JSON.parse(draft);
+                populateForm();
+                document.getElementById('draft-alert').style.display = 'none';
+            }
+        }
+
+        function clearDraft() {
+            localStorage.removeItem('admin_db_draft');
+            document.getElementById('draft-alert').style.display = 'none';
+        }
+
+        function syncDbWithUI() {
+            if (!db) return;
+            // Basic fields (Hero, About, Contact)
+            db.hero.name = v('hero-name');
+            db.hero.title = v('hero-title');
+            db.hero.tagline = v('hero-tagline');
+            db.hero.primaryBtn = { text: v('hero-btn1-text'), link: v('hero-btn1-link') };
+            db.hero.secondaryBtn = { text: v('hero-btn2-text'), link: v('hero-btn2-link') };
+
+            db.about.badge = v('about-badge');
+            db.about.heading = v('about-heading');
+            db.about.text1 = v('about-text1');
+            db.about.text2 = v('about-text2');
+            db.about.image = v('about-image');
+
+            db.contact.email = v('contact-email');
+            db.contact.formspreeId = v('contact-formspree');
+            db.contact.linkedin = v('contact-linkedin');
+            db.contact.github = v('contact-github');
+            db.contact.portfolio = v('contact-portfolio');
+        }
+
+        // Add auto-save listeners
+        document.getElementById('editor-sections').addEventListener('input', saveDraft);
 
         function populateForm() {
             // Hero
@@ -903,6 +969,7 @@
                     </div>
                 </div>
             `).join('');
+            saveDraft(); // Auto-save after re-rendering skills if triggered by actions
         }
 
         // --- List Actions ---
@@ -910,13 +977,32 @@
             if (confirm('Delete this item?')) {
                 db[type].splice(index, 1);
                 renderLists();
+                saveDraft(); // Persist deletion
             }
         }
 
-        function updateSkillCategory(index, val) { db.skills[index].category = val; }
-        function updateSkillTags(index, val) { db.skills[index].tags = val.split(',').map(s => s.trim()).filter(s => s); }
-        function deleteSkillCategory(index) { if (confirm('Delete category?')) { db.skills.splice(index, 1); renderSkills(); } }
-        function addNewSkillCategory() { db.skills.push({ category: 'New Category', tags: [] }); renderSkills(); }
+        function updateSkillCategory(index, val) {
+            db.skills[index].category = val;
+            saveDraft();
+        }
+
+        function updateSkillTags(index, val) {
+            db.skills[index].tags = val.split(',').map(t => t.trim()).filter(t => t !== "");
+            saveDraft();
+        }
+
+        function deleteSkillCategory(index) {
+            if (confirm('Delete this category?')) {
+                db.skills.splice(index, 1);
+                renderSkills();
+            }
+        }
+
+        function addSkillCategory() {
+            db.skills.push({ category: "New Category", tags: [] });
+            renderSkills();
+        }
+
 
         // --- Modal System ---
         function openModal(type, index = null) {
@@ -1036,6 +1122,7 @@
             else db[activeModalType].push(newItem);
 
             renderLists();
+            saveDraft(); // Persist modal changes
             closeModal();
         }
 
@@ -1079,6 +1166,8 @@
                 if (!res.ok) throw new Error('Failed to update GitHub. Check token permissions and repo settings.');
                 const data = await res.json();
                 CURRENT_SHA = data.content.sha;
+
+                clearDraft(); // Clear draft after successful publish
 
                 status.textContent = 'Successfully published! Your portfolio is being updated.';
                 status.classList.add('success');
