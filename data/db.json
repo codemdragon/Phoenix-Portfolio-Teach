@@ -67,52 +67,62 @@
         {
             "index": 1,
             "title": "The Python Series | Trailer",
-            "duration": "1:22"
+            "duration": "1:22",
+            "youtubeUrl": "https://www.youtube.com/watch?v=EkplNj4oNeo"
         },
         {
             "index": 2,
             "title": "Variables and Data Types",
-            "duration": "2:30"
+            "duration": "2:30",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 3,
             "title": "Simple Math Operations",
-            "duration": "3:54"
+            "duration": "3:54",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 4,
             "title": "Conditions",
-            "duration": "4:52"
+            "duration": "4:52",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 5,
             "title": "Logical Operators and Boolean",
-            "duration": "5:28"
+            "duration": "5:28",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 6,
             "title": "Loops",
-            "duration": "13:44"
+            "duration": "13:44",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 7,
             "title": "Functions Part 1",
-            "duration": "3:36"
+            "duration": "3:36",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 8,
             "title": "Functions Part 2",
-            "duration": "4:30"
+            "duration": "4:30",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 9,
             "title": "GUI - Getting Started with Tkinter",
-            "duration": "2:37"
+            "duration": "2:37",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         },
         {
             "index": 10,
             "title": "String Operations",
-            "duration": "8:31"
+            "duration": "8:31",
+            "youtubeUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID_HERE"
         }
     ],
     "projects": [
