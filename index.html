@@ -190,6 +190,15 @@
             color: var(--py-yellow);
         }
 
+        .nav-links .active {
+            color: var(--py-blue);
+            font-weight: 700;
+        }
+
+        body.dark-mode .nav-links .active {
+            color: var(--py-yellow);
+        }
+
         .theme-toggle {
             cursor: pointer;
             font-size: 1.2rem;
@@ -798,6 +807,314 @@
             font-weight: 700;
         }
 
+        /* --- PROGRAMS SECTION --- */
+        .progression-container {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: var(--accent-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progression-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto 40px;
+        }
+
+        .progression-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border-color);
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .progression-step {
+            position: relative;
+            z-index: 2;
+            background: var(--bg-card);
+            border: 3px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .progression-step.active {
+            border-color: var(--py-blue);
+            color: var(--py-blue);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(48, 105, 152, 0.3);
+        }
+
+        body.dark-mode .progression-step.active {
+            border-color: var(--py-yellow);
+            color: var(--py-yellow);
+            box-shadow: 0 0 15px rgba(255, 212, 59, 0.3);
+        }
+
+        .progression-label {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .program-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .program-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            transition: background 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--py-blue);
+        }
+
+        body.dark-mode .program-card:hover {
+            border-color: var(--py-yellow);
+        }
+
+        .program-card.beginner::after {
+            background: var(--py-blue);
+        }
+
+        .program-card.intermediate::after {
+            background: var(--py-yellow);
+        }
+
+        .program-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            background: var(--accent-bg);
+            color: var(--text-muted);
+        }
+
+        .program-card.beginner .program-badge {
+            color: var(--py-blue);
+            background: rgba(48, 105, 152, 0.1);
+        }
+
+        .program-card.intermediate .program-badge {
+            color: #d4a500;
+            background: rgba(255, 212, 59, 0.15);
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .program-target {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .program-outcomes {
+            margin: 25px 0;
+            flex-grow: 1;
+        }
+
+        .program-outcomes li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .program-outcomes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        body.dark-mode .program-outcomes li::before {
+            color: #4caf50;
+        }
+
+        .program-who-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .who-tag {
+            font-size: 0.75rem;
+            background: var(--accent-bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .program-summary {
+            margin-top: 25px;
+            padding: 15px;
+            background: var(--accent-bg);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 4px solid var(--py-blue);
+        }
+
+        .program-card.intermediate .program-summary {
+            border-left-color: var(--py-yellow);
+        }
+
+        .philosophy-sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .info-block {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-block h4 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--py-blue);
+        }
+
+        body.dark-mode .info-block h4 {
+            color: var(--py-yellow);
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .info-list i {
+            color: var(--py-blue);
+            margin-top: 4px;
+        }
+
+        body.dark-mode .info-list i {
+            color: var(--py-yellow);
+        }
+
+        .small-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .programs-cta {
+            margin-top: 80px;
+            padding: 60px;
+            background: var(--py-blue);
+            color: white;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .programs-cta {
+            background: #1a3a5a;
+        }
+
+        .programs-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 40%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: rotate(15deg);
+        }
+
+        .programs-cta h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .programs-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Responsive fixes for programs */
+        @media (max-width: 768px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .programs-cta {
+                padding: 40px 20px;
+            }
+
+            .programs-cta h3 {
+                font-size: 1.75rem;
+            }
+        }
+
         body.dark-mode .avatar-placeholder {
             background: var(--py-yellow);
             color: #333;
@@ -1239,9 +1556,10 @@
             <div class="logo">Khadeeja Haji <span style="color:var(--py-yellow)">.</span></div>
             <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
+                <a href="#programs">Programs</a>
                 <a href="#course">Course</a>
+                <a href="#experience">Experience</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#contact">Contact</a>
             </div>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
@@ -1264,10 +1582,10 @@
         </div>
         <div class="sidebar-links">
             <a href="#about"><i class="fas fa-user"></i> About</a>
-            <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-            <a href="#skills"><i class="fas fa-magic"></i> Skills</a>
-            <a href="#course"><i class="fas fa-play"></i> Course</a>
-            <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+            <a href="#programs"><i class="fas fa-laptop-code"></i> Programs</a>
+            <a href="#course"><i class="fas fa-play-circle"></i> View Course</a>
+            <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+            <a href="#reviews"><i class="fas fa-star"></i> Reviews</a>
             <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
         </div>
         <div
@@ -1309,6 +1627,14 @@
             <div class="approach-grid reveal" id="approach-dynamic">
                 <!-- Dynamic Content -->
             </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="section-padding"
+        style="background: var(--bg-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container reveal" id="programs-dynamic">
+            <!-- Loaded dynamically -->
         </div>
     </section>
 
@@ -1530,6 +1856,7 @@
                 renderStats();
                 renderAbout();
                 renderApproach();
+                renderPrograms();
                 renderCourse();
                 renderProjects();
                 renderExperience();
@@ -1618,6 +1945,119 @@
                     <p>${a.desc}</p>
                 </div>
             `).join('');
+        }
+
+        function renderPrograms() {
+            const p = portfolioData.programs;
+            const container = document.getElementById('programs-dynamic');
+
+            container.innerHTML = `
+                <div class="text-center">
+                    <h2 class="section-title">${p.intro.title}</h2>
+                    <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">${p.intro.desc}</p>
+                </div>
+
+                <div class="progression-container">
+                    <div class="progression-bar">
+                        <div class="progression-step active">
+                            1
+                            <span class="progression-label">Beginner</span>
+                        </div>
+                        <div class="progression-step active">
+                            2
+                            <span class="progression-label">Intermediate</span>
+                        </div>
+                        <div class="progression-step">
+                            3
+                            <span class="progression-label">Advanced (Soon)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="programs-grid">
+                    ${p.levels.map(lvl => `
+                        <div class="program-card ${lvl.id}">
+                            <span class="program-badge">${lvl.badge}</span>
+                            <h3>${lvl.title}</h3>
+                            <div class="program-target">${lvl.target}</div>
+                            <p>${lvl.desc}</p>
+                            
+                            <ul class="program-outcomes">
+                                ${lvl.outcomes.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+
+                            <div class="program-summary">
+                                ${lvl.summary}
+                            </div>
+
+                            <div class="program-who-tags">
+                                <span class="small-title" style="width: 100%; margin-bottom: 10px;">Who This Is For</span>
+                                ${lvl.whoItIsFor.map(tag => `<span class="who-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="philosophy-sessions-grid">
+                    <div class="info-block">
+                        <span class="small-title">Our Methods</span>
+                        <h4>${p.philosophy.title}</h4>
+                        <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; color: var(--text-muted);">${p.philosophy.subtitle}</p>
+                        <ul class="info-list">
+                            ${p.philosophy.points.map(pt => `<li><i class="fas fa-check-circle"></i> <span>${pt}</span></li>`).join('')}
+                        </ul>
+                        <div style="margin-top: 20px; font-size: 0.9rem; font-style: italic; color: var(--text-muted);">
+                             ${p.philosophy.conclusion}
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="small-title">Structure</span>
+                        <h4>${p.sessions.title}</h4>
+                        <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; color: var(--text-muted);">${p.sessions.subtitle}</p>
+                        <p style="margin-bottom: 15px; font-size: 0.95rem;">${p.sessions.desc}</p>
+                        <ul class="info-list">
+                            ${p.sessions.includes.map(item => `<li><i class="fas fa-arrow-right"></i> <span>${item}</span></li>`).join('')}
+                        </ul>
+                        <p style="margin-top: 15px; font-size: 0.9rem; font-style: italic;">${p.sessions.flexibility}</p>
+                    </div>
+                </div>
+
+                <div class="philosophy-sessions-grid" style="margin-top: 30px;">
+                    <div class="info-block">
+                        <span class="small-title">Infrastructure</span>
+                        <h4>${p.tools.title}</h4>
+                        <ul class="info-list">
+                            ${p.tools.items.map(item => `<li><i class="fas fa-tools"></i> <span>${item}</span></li>`).join('')}
+                        </ul>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-info-circle"></i> ${p.tools.support}</p>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="small-title">Support</span>
+                        <h4>${p.communication.title}</h4>
+                        <ul class="info-list">
+                            ${p.communication.points.map(pt => `<li><i class="fas fa-comment-dots"></i> <span>${pt}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-block" style="margin-top: 30px; border-left: 5px solid var(--py-yellow);">
+                    <span class="small-title">Investment</span>
+                    <h4>${p.payment.title}</h4>
+                    <p style="margin-bottom: 15px;">${p.payment.desc}</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        ${p.payment.options.map(opt => `<span class="skill-tag" style="background: var(--accent-bg);">${opt}</span>`).join('')}
+                    </div>
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">${p.payment.note}</p>
+                </div>
+
+                <div class="programs-cta reveal">
+                    <h3>${p.cta.title}</h3>
+                    <p>${p.cta.desc}</p>
+                    <a href="${p.cta.btnLink}" class="btn btn-secondary" style="font-size: 1.1rem; padding: 15px 40px;">${p.cta.btnText}</a>
+                </div>
+            `;
         }
 
         function renderCourse() {
