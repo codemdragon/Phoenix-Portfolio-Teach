@@ -322,5 +322,109 @@
             "answer": "8",
             "explanation": "x starts at 5. Loop runs for i=0, 1, 2. 5+0+1+2 = 8"
         }
-    ]
+    ],
+    "programs": {
+        "intro": {
+            "title": "Structured Python Programs for Young Learners",
+            "desc": "Each program is carefully designed to build confidence, problem-solving ability, and real programming skills through guided instruction and hands-on projects.\n\nStudents progress at their own pace in small-group or one-on-one settings, ensuring personalized support and meaningful growth."
+        },
+        "levels": [
+            {
+                "id": "beginner",
+                "badge": "Entry Level",
+                "title": "Python Foundations",
+                "target": "New to programming",
+                "desc": "This program introduces the fundamentals of coding in a structured and supportive environment. Students build a strong foundation in core programming concepts while developing logical thinking and confidence.",
+                "whoItIsFor": [
+                    "No prior experience",
+                    "Ages 10–14",
+                    "Curious learners"
+                ],
+                "outcomes": [
+                    "Strong understanding of core programming principles",
+                    "Logical thinking and structured problem-solving",
+                    "Ability to write and modify simple programs",
+                    "Confidence working independently in Python",
+                    "Comfort with debugging and fixing errors"
+                ],
+                "summary": "By the end of this program, students are comfortable writing beginner-level Python programs independently."
+            },
+            {
+                "id": "intermediate",
+                "badge": "Intermediate",
+                "title": "Python Development & Creative Coding",
+                "target": "Comfortable with foundational concepts",
+                "desc": "This program strengthens problem-solving skills and introduces students to structured program development. Designed for students ready to build more advanced projects.",
+                "whoItIsFor": [
+                    "Completed beginner course",
+                    "Comfortable writing simple programs",
+                    "Ready for structured projects"
+                ],
+                "outcomes": [
+                    "Stronger logical reasoning and structured thinking",
+                    "Ability to organize and manage larger programs",
+                    "Creative coding skills through visual and interactive projects",
+                    "Confidence building real-world style applications",
+                    "Improved independence in reading and modifying code"
+                ],
+                "summary": "By the end of this program, students are able to confidently design and build multi-part Python programs."
+            }
+        ],
+        "philosophy": {
+            "title": "Teaching Philosophy",
+            "subtitle": "Project-Based. Student-Centered. Confidence-Focused.",
+            "points": [
+                "Every concept is reinforced through building.",
+                "Students are encouraged to experiment and ask questions.",
+                "Mistakes are treated as part of the learning process.",
+                "Learning is paced to ensure understanding — not speed."
+            ],
+            "conclusion": "The goal is not just to teach Python, but to help students think like programmers."
+        },
+        "sessions": {
+            "title": "How Sessions Work",
+            "subtitle": "Small Group or 1:1 Format",
+            "desc": "Sessions are conducted online in small groups (maximum 3 students) or one-on-one.",
+            "includes": [
+                "Warm-up review activity",
+                "Guided instruction of new concepts",
+                "Live coding demonstrations",
+                "Independent practice or challenge",
+                "Recap and reflection"
+            ],
+            "flexibility": "Sessions are structured but flexible, adapting to each student's pace."
+        },
+        "tools": {
+            "title": "Tools & Setup",
+            "items": [
+                "A computer (Windows, macOS, or Linux)",
+                "Python installed",
+                "VS Code"
+            ],
+            "support": "Setup assistance can be provided before the first session if needed."
+        },
+        "communication": {
+            "title": "Communication & Support",
+            "points": [
+                "All class-related communication is handled through a dedicated parent communication platform.",
+                "Students also have access to a space where they can ask questions outside of class time to encourage continued learning and curiosity.",
+                "Parents are welcome to reach out with questions at any time."
+            ]
+        },
+        "payment": {
+            "title": "Payment Structure",
+            "desc": "Flexible payment options are available:",
+            "options": [
+                "Monthly Plan",
+                "Multi-Month Commitment Plan"
+            ],
+            "note": "Specific details are discussed directly with families. If a session is missed, rescheduling may be arranged whenever possible with advance notice."
+        },
+        "cta": {
+            "title": "Ready to Start Learning Python?",
+            "desc": "Book a consultation or trial session to determine the best program fit.",
+            "btnText": "Book a Session",
+            "btnLink": "#contact"
+        }
+    }
 }
