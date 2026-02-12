@@ -428,6 +428,7 @@
                 <div class="section-tab active" data-target="section-hero">Hero</div>
                 <div class="section-tab" data-target="section-about">About</div>
                 <div class="section-tab" data-target="section-approach">Approach</div>
+                <div class="section-tab" data-target="section-programs">Programs</div>
                 <div class="section-tab" data-target="section-stats">Stats</div>
                 <div class="section-tab" data-target="section-experience">Experience</div>
                 <div class="section-tab" data-target="section-skills">Skills</div>
@@ -540,6 +541,143 @@
                         <ul class="item-list" id="stats-list"></ul>
                         <button class="btn-add" onclick="openModal('stats')"><i class="fas fa-plus"></i> Add
                             Statistic</button>
+                    </div>
+                </div>
+
+                <!-- Programs Section -->
+                <div id="section-programs" class="editor-section" style="display:none;">
+                    <div class="card">
+                        <h3>Programs Intro</h3>
+                        <div class="input-group">
+                            <label>Title</label>
+                            <input type="text" id="prog-intro-title">
+                        </div>
+                        <div class="input-group">
+                            <label>Description</label>
+                            <textarea id="prog-intro-desc" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Program Levels</h3>
+                        <ul class="item-list" id="prog-levels-list"></ul>
+                        <button class="btn-add" onclick="openModal('prog-levels')"><i class="fas fa-plus"></i> Add
+                            Level</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Teaching Philosophy</h3>
+                        <div class="input-group">
+                            <label>Title</label>
+                            <input type="text" id="prog-phil-title">
+                        </div>
+                        <div class="input-group">
+                            <label>Subtitle</label>
+                            <input type="text" id="prog-phil-sub">
+                        </div>
+                        <div class="input-group">
+                            <label>Conclusion</label>
+                            <input type="text" id="prog-phil-conc">
+                        </div>
+                        <div class="input-group">
+                            <label>Points (One per line)</label>
+                            <textarea id="prog-phil-points" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Sessions Info</h3>
+                        <div class="input-group">
+                            <label>Title</label>
+                            <input type="text" id="prog-sess-title">
+                        </div>
+                        <div class="input-group">
+                            <label>Subtitle</label>
+                            <input type="text" id="prog-sess-sub">
+                        </div>
+                        <div class="input-group">
+                            <label>Description</label>
+                            <textarea id="prog-sess-desc" rows="2"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Includes (One per line)</label>
+                            <textarea id="prog-sess-inc" rows="4"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Flexibility Note</label>
+                            <input type="text" id="prog-sess-flex">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Tools & Support</h3>
+                        <div class="input-group">
+                            <label>Tools Title</label>
+                            <input type="text" id="prog-tools-title">
+                        </div>
+                        <div class="input-group">
+                            <label>Tools Items (One per line)</label>
+                            <textarea id="prog-tools-items" rows="3"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Tools Support Note</label>
+                            <input type="text" id="prog-tools-supp">
+                        </div>
+                        <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+                            <label
+                                style="font-weight:600; color:var(--text-muted); display:block; margin-bottom:10px;">COMMUNICATION</label>
+                            <div class="input-group">
+                                <label>Title</label>
+                                <input type="text" id="prog-comm-title">
+                            </div>
+                            <div class="input-group">
+                                <label>Points (One per line)</label>
+                                <textarea id="prog-comm-points" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Payment & CTA</h3>
+                        <div class="input-group">
+                            <label>Payment Title</label>
+                            <input type="text" id="prog-pay-title">
+                        </div>
+                        <div class="input-group">
+                            <label>Payment Description</label>
+                            <textarea id="prog-pay-desc" rows="2"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Options (Comma separated)</label>
+                            <input type="text" id="prog-pay-opts">
+                        </div>
+                        <div class="input-group">
+                            <label>Payment Note</label>
+                            <textarea id="prog-pay-note" rows="2"></textarea>
+                        </div>
+                        <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+                            <label
+                                style="font-weight:600; color:var(--text-muted); display:block; margin-bottom:10px;">CALL
+                                TO ACTION</label>
+                            <div class="input-group">
+                                <label>CTA Title</label>
+                                <input type="text" id="prog-cta-title">
+                            </div>
+                            <div class="input-group">
+                                <label>CTA Description</label>
+                                <input type="text" id="prog-cta-desc">
+                            </div>
+                            <div class="row">
+                                <div class="input-group">
+                                    <label>Button Text</label>
+                                    <input type="text" id="prog-cta-btn">
+                                </div>
+                                <div class="input-group">
+                                    <label>Button Link</label>
+                                    <input type="text" id="prog-cta-link">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -906,6 +1044,44 @@
             db.contact.github = v('contact-github');
             db.contact.portfolio = v('contact-portfolio');
             db.contact.youtube = v('contact-youtube');
+
+            // Programs
+            if (!db.programs) db.programs = {};
+            db.programs.intro = { title: v('prog-intro-title'), desc: v('prog-intro-desc') };
+            db.programs.philosophy = {
+                title: v('prog-phil-title'),
+                subtitle: v('prog-phil-sub'),
+                conclusion: v('prog-phil-conc'),
+                points: v('prog-phil-points').split('\n').filter(l => l.trim())
+            };
+            db.programs.sessions = {
+                title: v('prog-sess-title'),
+                subtitle: v('prog-sess-sub'),
+                desc: v('prog-sess-desc'),
+                includes: v('prog-sess-inc').split('\n').filter(l => l.trim()),
+                flexibility: v('prog-sess-flex')
+            };
+            db.programs.tools = {
+                title: v('prog-tools-title'),
+                items: v('prog-tools-items').split('\n').filter(l => l.trim()),
+                support: v('prog-tools-supp')
+            };
+            db.programs.communication = {
+                title: v('prog-comm-title'),
+                points: v('prog-comm-points').split('\n').filter(l => l.trim())
+            };
+            db.programs.payment = {
+                title: v('prog-pay-title'),
+                desc: v('prog-pay-desc'),
+                options: v('prog-pay-opts').split(',').map(o => o.trim()).filter(o => o),
+                note: v('prog-pay-note')
+            };
+            db.programs.cta = {
+                title: v('prog-cta-title'),
+                desc: v('prog-cta-desc'),
+                btnText: v('prog-cta-btn'),
+                btnLink: v('prog-cta-link')
+            };
         }
 
         // Add auto-save listeners
@@ -941,6 +1117,34 @@
             document.getElementById('contact-portfolio').value = db.contact.portfolio;
             document.getElementById('contact-youtube').value = db.contact.youtube || '';
 
+            // Programs
+            if (db.programs) {
+                document.getElementById('prog-intro-title').value = db.programs.intro.title;
+                document.getElementById('prog-intro-desc').value = db.programs.intro.desc;
+                document.getElementById('prog-phil-title').value = db.programs.philosophy.title;
+                document.getElementById('prog-phil-sub').value = db.programs.philosophy.subtitle;
+                document.getElementById('prog-phil-conc').value = db.programs.philosophy.conclusion;
+                document.getElementById('prog-phil-points').value = db.programs.philosophy.points.join('\n');
+                document.getElementById('prog-sess-title').value = db.programs.sessions.title;
+                document.getElementById('prog-sess-sub').value = db.programs.sessions.subtitle;
+                document.getElementById('prog-sess-desc').value = db.programs.sessions.desc;
+                document.getElementById('prog-sess-inc').value = db.programs.sessions.includes.join('\n');
+                document.getElementById('prog-sess-flex').value = db.programs.sessions.flexibility;
+                document.getElementById('prog-tools-title').value = db.programs.tools.title;
+                document.getElementById('prog-tools-items').value = db.programs.tools.items.join('\n');
+                document.getElementById('prog-tools-supp').value = db.programs.tools.support;
+                document.getElementById('prog-comm-title').value = db.programs.communication.title;
+                document.getElementById('prog-comm-points').value = db.programs.communication.points.join('\n');
+                document.getElementById('prog-pay-title').value = db.programs.payment.title;
+                document.getElementById('prog-pay-desc').value = db.programs.payment.desc;
+                document.getElementById('prog-pay-opts').value = db.programs.payment.options.join(', ');
+                document.getElementById('prog-pay-note').value = db.programs.payment.note;
+                document.getElementById('prog-cta-title').value = db.programs.cta.title;
+                document.getElementById('prog-cta-desc').value = db.programs.cta.desc;
+                document.getElementById('prog-cta-btn').value = db.programs.cta.btnText;
+                document.getElementById('prog-cta-link').value = db.programs.cta.btnLink;
+            }
+
             renderLists();
         }
 
@@ -955,6 +1159,7 @@
             renderGenericList('reviews', db.reviews, r => `<strong>${r.author}</strong><p>${r.text.substring(0, 50)}...</p>`);
             renderGenericList('faq', db.faq, f => `<strong>Q: ${f.q}</strong><p>A: ${f.a.substring(0, 50)}...</p>`);
             renderGenericList('challenges', db.challenges || [], c => `<strong>${c.title}</strong><p>${c.subtitle}</p>`);
+            renderGenericList('prog-levels', db.programs.levels, l => `<strong>${l.title}</strong><p>${l.badge} | ${l.target}</p>`);
 
             renderSkills();
         }
@@ -995,7 +1200,8 @@
         // --- List Actions ---
         function deleteItem(type, index) {
             if (confirm('Delete this item?')) {
-                db[type].splice(index, 1);
+                if (type === 'prog-levels') db.programs.levels.splice(index, 1);
+                else db[type].splice(index, 1);
                 renderLists();
                 saveDraft(); // Persist deletion
             }
@@ -1032,7 +1238,11 @@
             const title = document.getElementById('modal-title');
             let html = '';
 
-            const item = index !== null ? db[type][index] : {};
+            let item = {};
+            if (index !== null) {
+                if (type === 'prog-levels') item = db.programs.levels[index];
+                else item = db[type][index];
+            }
 
             switch (type) {
                 case 'experience':
@@ -1107,6 +1317,20 @@
                         <div class="input-group"><label>Explanation</label><textarea id="m-expl" rows="2">${item.explanation || ''}</textarea></div>
                     `;
                     break;
+                case 'prog-levels':
+                    html = `
+                        <div class="row">
+                            <div class="input-group"><label>ID (beginner/intermediate)</label><input type="text" id="m-id" value="${item.id || ''}"></div>
+                            <div class="input-group"><label>Badge</label><input type="text" id="m-badge" value="${item.badge || ''}"></div>
+                        </div>
+                        <div class="input-group"><label>Title</label><input type="text" id="m-title" value="${item.title || ''}"></div>
+                        <div class="input-group"><label>Target Audience</label><input type="text" id="m-target" value="${item.target || ''}"></div>
+                        <div class="input-group"><label>Description</label><textarea id="m-desc" rows="3">${item.desc || ''}</textarea></div>
+                        <div class="input-group"><label>Outcomes (One per line)</label><textarea id="m-outcomes" rows="4">${(item.outcomes || []).join('\n')}</textarea></div>
+                        <div class="input-group"><label>Who This Is For (One per line)</label><textarea id="m-who" rows="3">${(item.whoItIsFor || []).join('\n')}</textarea></div>
+                        <div class="input-group"><label>Final Summary Note</label><input type="text" id="m-summary" value="${item.summary || ''}"></div>
+                    `;
+                    break;
             }
 
             fields.innerHTML = html;
@@ -1146,10 +1370,29 @@
                 case 'challenges':
                     newItem = { title: v('m-title'), subtitle: v('m-sub'), code: v('m-code'), answer: v('m-answer'), explanation: v('m-expl') };
                     break;
+                case 'prog-levels':
+                    newItem = {
+                        id: v('m-id'),
+                        badge: v('m-badge'),
+                        title: v('m-title'),
+                        target: v('m-target'),
+                        desc: v('m-desc'),
+                        outcomes: v('m-outcomes').split('\n').filter(l => l.trim()),
+                        whoItIsFor: v('m-who').split('\n').filter(l => l.trim()),
+                        summary: v('m-summary')
+                    };
+                    break;
             }
 
-            if (editingItemIndex !== null) db[activeModalType][editingItemIndex] = newItem;
-            else db[activeModalType].push(newItem);
+            if (editingItemIndex !== null) {
+                if (activeModalType === 'prog-levels') db.programs.levels[editingItemIndex] = newItem;
+                else db[activeModalType][editingItemIndex] = newItem;
+            } else {
+                if (activeModalType === 'prog-levels') {
+                    if (!db.programs.levels) db.programs.levels = [];
+                    db.programs.levels.push(newItem);
+                } else db[activeModalType].push(newItem);
+            }
 
             renderLists();
             saveDraft(); // Persist modal changes
